@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Personas</title>
+</head>
+<body>
+<h2>Listado de Personas</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Carrera</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Utilizamos Thymeleaf para iterar sobre la lista de personas -->
+    <tr th:each="persona : ${personas}">
+        <td th:text="${persona.id}"></td>
+        <td th:text="${persona.nombre}"></td>
+        <td th:text="${persona.apellido}"></td>
+        <td th:text="${persona.edad}"></td>
+        <td th:text="${persona.carrera}"></td>
+        <td>
+            <a th:href="@{editar/{id}(id=${persona.id})}">Editar</a>
+
+
+            <form th:action="@{eliminar/{id}(id=${persona.id})}  " method="post">
+
+                <button type="submit">Eliminar</button>
+            </form>
+
+        </td>
+    </tr>
+
+
+    </tbody>
+
+
+</table>
+
+<a href="nuevo">Añadir usuario</a>
+</body>
+</html>
